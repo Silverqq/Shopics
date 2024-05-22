@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Shopics</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Клиент</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_catalog">Каталог</string>
+    <string name="menu_shopper">Корзина</string>
+    <string name="menu_slideshow">Выйти из учетной записи</string>
+</resources>

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "163952480828",
+    "project_id": "shopics-b1f2d",
+    "storage_bucket": "shopics-b1f2d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:163952480828:android:62110f8107b6bcf3bd2939",
+        "android_client_info": {
+          "package_name": "com.shopics"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAUlV2bX_9UQ55vXktIpJuPBI98umD40Mk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
