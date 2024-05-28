@@ -17,8 +17,12 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.shopics.databinding.ActivityMainBinding;
 import com.shopics.databinding.NavHeaderMainBinding;
+import com.shopics.ui.catalog.Product;
 
 public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
@@ -29,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         nameHeader = findViewById(R.id.header);
+
         //Intent intent = getIntent();
         // (intent != null){
         //    String data = intent.getStringExtra("name");
