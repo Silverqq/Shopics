@@ -35,7 +35,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         Product product = productList.get(position);
         holder.textViewName.setText(product.getName());
         holder.textViewPrice.setText(String.valueOf(product.getPrice()));
-        holder.textViewDescription.setText(String.valueOf(product.getDescription()));
         // Добавьте другие логику для отображения данных продукта
     }
 
@@ -45,7 +44,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     }
 
     public static class ProductViewHolder extends RecyclerView.ViewHolder {
-        TextView textViewDescription;
         TextView textViewName;
         TextView textViewPrice;
 
@@ -53,9 +51,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             super(itemView);
             textViewName = itemView.findViewById(R.id.text_view_name);
             textViewPrice = itemView.findViewById(R.id.text_view_price);
-            textViewDescription = itemView.findViewById(R.id.text_view_description);
-
         }
-
     }
 }

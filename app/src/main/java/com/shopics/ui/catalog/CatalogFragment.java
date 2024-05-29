@@ -41,9 +41,6 @@ public class CatalogFragment extends Fragment {
         recyclerView.setAdapter(productAdapter);
 
         databaseReference = FirebaseDatabase.getInstance().getReference("products");
-
-
-
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
