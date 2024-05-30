@@ -1,9 +1,11 @@
 package com.shopics.ui.catalog;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -54,10 +56,38 @@ public class CatalogFragment extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                // Обработка ошибки
+                // Error handling
+            }
+        });
+
+        // Set the item click listener
+        productAdapter.setOnItemClickListener(new ProductAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Product product) {
+                showProductDialog(product);
             }
         });
 
         return view;
+    }
+
+    private void showProductDialog(Product product) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        LayoutInflater inflater = getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.product_fragment, null);
+
+        // Customize the dialog view with product details
+        TextView productName = dialogView.findViewById(R.id.name_txt);
+        TextView productPrice = dialogView.findViewById(R.id.price_txt);
+        TextView productDescriptiom = dialogView.findViewById(R.id.description_txt);
+        productName.setText(product.getName());
+        productDescriptiom.setText(product.getDescription());
+        productPrice.setText(product.getPrice());
+
+        // Add more views and set product details as needed
+
+        builder.setView(dialogView);
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 }

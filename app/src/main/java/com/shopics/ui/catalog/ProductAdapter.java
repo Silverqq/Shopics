@@ -23,6 +23,16 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         this.productList = productList;
     }
 
+    private OnItemClickListener onItemClickListener;
+
+    public interface OnItemClickListener {
+        void onItemClick(Product product);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
+
     @NonNull
     @Override
     public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -35,7 +45,16 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         Product product = productList.get(position);
         holder.textViewName.setText(product.getName());
         holder.textViewPrice.setText(String.valueOf(product.getPrice()));
-        // Добавьте другие логику для отображения данных продукта
+        holder.textViewDescription.setText(String.valueOf(product.getDescription()));
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (onItemClickListener != null) {
+                    onItemClickListener.onItemClick(product);
+                }
+            }
+        });
     }
 
     @Override
@@ -46,11 +65,13 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     public static class ProductViewHolder extends RecyclerView.ViewHolder {
         TextView textViewName;
         TextView textViewPrice;
+        TextView textViewDescription;
 
         public ProductViewHolder(@NonNull View itemView) {
             super(itemView);
             textViewName = itemView.findViewById(R.id.text_view_name);
             textViewPrice = itemView.findViewById(R.id.text_view_price);
+            textViewDescription = itemView.findViewById(R.id.text_view_description);
         }
     }
 }
