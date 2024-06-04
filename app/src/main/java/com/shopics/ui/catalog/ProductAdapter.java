@@ -1,9 +1,11 @@
 package com.shopics.ui.catalog;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -17,6 +19,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
     private Context context;
     private List<Product> productList;
+
 
     public ProductAdapter(Context context, List<Product> productList) {
         this.context = context;
@@ -45,7 +48,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         Product product = productList.get(position);
         holder.textViewName.setText(product.getName());
         holder.textViewPrice.setText(String.valueOf(product.getPrice()));
-        holder.textViewDescription.setText(String.valueOf(product.getDescription()));
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,13 +67,13 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     public static class ProductViewHolder extends RecyclerView.ViewHolder {
         TextView textViewName;
         TextView textViewPrice;
-        TextView textViewDescription;
+        Button addButton;
 
         public ProductViewHolder(@NonNull View itemView) {
             super(itemView);
             textViewName = itemView.findViewById(R.id.text_view_name);
             textViewPrice = itemView.findViewById(R.id.text_view_price);
-            textViewDescription = itemView.findViewById(R.id.text_view_description);
+            addButton = itemView.findViewById(R.id.addButton);
         }
     }
 }

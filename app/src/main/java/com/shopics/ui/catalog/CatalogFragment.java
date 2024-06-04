@@ -1,15 +1,20 @@
 package com.shopics.ui.catalog;
 
 import android.app.AlertDialog;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,6 +24,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.shopics.R;
+import com.shopics.ui.shopper.Cart;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +35,7 @@ public class CatalogFragment extends Fragment {
     private ProductAdapter productAdapter;
     private List<Product> productList;
     private DatabaseReference databaseReference;
+    private RecyclerView.LayoutManager layoutManager;
 
     @Nullable
     @Override
@@ -36,7 +43,8 @@ public class CatalogFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_catalog, container, false);
 
         recyclerView = view.findViewById(R.id.listofproducts);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        layoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(layoutManager);
 
         productList = new ArrayList<>();
         productAdapter = new ProductAdapter(getContext(), productList);
@@ -68,6 +76,7 @@ public class CatalogFragment extends Fragment {
             }
         });
 
+
         return view;
     }
 
@@ -80,11 +89,16 @@ public class CatalogFragment extends Fragment {
         TextView productName = dialogView.findViewById(R.id.name_txt);
         TextView productPrice = dialogView.findViewById(R.id.price_txt);
         TextView productDescriptiom = dialogView.findViewById(R.id.description_txt);
+        Button addButton = dialogView.findViewById(R.id.addButton);
         productName.setText(product.getName());
         productDescriptiom.setText(product.getDescription());
         productPrice.setText(product.getPrice());
 
         // Add more views and set product details as needed
+        addButton.setOnClickListener(v -> {
+            Cart.getInstance().addProduct(product);
+            Toast.makeText(getContext(), product.getName() + " добавлен в корзину", Toast.LENGTH_SHORT).show();
+        });
 
         builder.setView(dialogView);
         AlertDialog alertDialog = builder.create();
