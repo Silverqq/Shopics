@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -17,15 +16,13 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.shopics.MainActivity;
 
 public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private EditText editTextEmail;
     private EditText editTextPassword;
     private Button buttonLogin;
+    private Button buttonReg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +34,7 @@ public class LoginActivity extends AppCompatActivity {
         editTextEmail = findViewById(R.id.edit_text_email);
         editTextPassword = findViewById(R.id.edit_text_password);
         buttonLogin = findViewById(R.id.login_button);
+        buttonReg = findViewById(R.id.register_button);
 
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,7 +42,6 @@ public class LoginActivity extends AppCompatActivity {
                 try {
                     String email = editTextEmail.getText().toString();
                     String password = editTextPassword.getText().toString();
-
 
                     mAuth.signInWithEmailAndPassword(email, password)
                             .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
@@ -60,11 +57,18 @@ public class LoginActivity extends AppCompatActivity {
                                     }
                                 }
                             });
-                }
-                catch (Exception e){
+                } catch (Exception e) {
                     Toast.makeText(LoginActivity.this, "Ошибка ввода данных", Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
 
+        buttonReg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
     }
